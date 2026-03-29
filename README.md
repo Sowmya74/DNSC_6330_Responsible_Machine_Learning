@@ -4,13 +4,13 @@ This repository contains my coursework for DNSC 6330 Responsible Machine Learnin
 
 ## Repository Contents
 
-- `Individual_Assignment_1.ipynb`
+- [`Individual_Assignment_1.ipynb`](./Individual_Assignment_1.ipynb)
 - `Individual_Assignment_2.ipynb`
 - `README.md`
 
 ## Individual Homework 1
 
-**File:** `Individual_Assignment_1.ipynb`
+**File:** [`Individual_Assignment_1.ipynb`](./Individual_Assignment_1.ipynb)
 
 ### Purpose
 The purpose of this assignment is to translate the complete COMPAS recidivism workflow from the Lecture 01 R notebook into Python while preserving the same analytical logic, preprocessing steps, model specification, and evaluation procedure.
