@@ -6,14 +6,7 @@ This repository contains my coursework for DNSC 6330 Responsible Machine Learnin
 
 - `Individual_Assignment_1.ipynb`
 - `Individual_Assignment_2.ipynb`
-- `Group_Assignment_1.ipynb`
 - `README.md`
-
-## Group Homework 1
-
-File: `Group_Assignment_1.ipynb`
-
-This notebook addresses the group assignment for the course.
 
 ## Individual Homework 1
 
