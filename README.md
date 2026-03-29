@@ -5,7 +5,7 @@ This repository contains my coursework for DNSC 6330 Responsible Machine Learnin
 ## Repository Contents
 
 - [`Individual_Assignment_1.ipynb`](./Individual_Assignment_1.ipynb)
-- `Individual_Assignment_2.ipynb`
+- [`Individual_Assignment_2.ipynb`](./Individual_Assignment_2.ipynb)
 - `README.md`
 
 ## Individual Homework 1
@@ -50,7 +50,7 @@ The Assignment 1 notebook shows that:
 
 ## Individual Homework 2
 
-**File:** `Individual_Assignment_2.ipynb`
+**File:** [`Individual_Assignment_2.ipynb`](./Individual_Assignment_2.ipynb)
 
 ### Purpose
 The purpose of this assignment is to explain and audit the COMPAS replacement model developed in Assignment 1 using model explanation methods introduced in Lecture 02.
@@ -66,22 +66,35 @@ The purpose of this assignment is to explain and audit the COMPAS replacement mo
 
 ### Description
 This notebook extends the COMPAS model from Homework 1 using explainability methods from Lecture 02. It includes:
-- Building a logistic regression model and a gradient-boosted tree model
+- Building a logistic regression model and a gradient boosted tree model
 - Comparison of prediction performance across racial groups
 - SHAP beeswarm summary plots
-- SHAP waterfall plots for the highest-risk and lowest-risk African-American and Caucasian defendants
+- SHAP waterfall plots for the highest risk and lowest risk African-American and Caucasian defendants
 - LIME explanations for the same individuals
 - Comparison of SHAP and LIME feature attributions
 - DiCE counterfactual explanations
 - Identification of whether counterfactuals require changes to immutable features such as race or sex
 - A governance memo discussing model behavior, explanation limitations, and recommendations for future monitoring
 
+### Key Results: GBT Performance by Race
+
+| race             | accuracy | **FPR**  | FNR   |
+|:-----------------|---------:|---------:|------:|
+| African-American |   0.694 | **0.342**| 0.273 |
+| **Caucasian**    |   0.674 | **0.139**| 0.634 |
+| Hispanic         |   0.617 |   0.163 | 0.622 |
+| Other            |   0.723 |   0.128 | 0.667 |
+| Asian            |   0.714 |   0.167 | 1.000 |
+| Native American  |   1.000 |   0.000 | 0.000 |
+
+**Key Finding:** Substantial FPR disparity persists: **African-American 0.342 vs Caucasian 0.139**.
+
 ### Main Findings
-The Assignment 2 notebook shows that:
-- Prior arrests, age, charge severity, and race are the most influential predictors of recidivism risk
-- SHAP and LIME generally agree on the major drivers of predictions, although they sometimes differ in the importance assigned to race
-- Counterfactual explanations often require changes in prior arrests or age, but should not rely on immutable features
-- The model continues to show racial disparities in false-positive and false-negative rates, suggesting the need for ongoing monitoring and fairness audits
+
+- **SHAP:** Prior arrests and age strongest drivers. Younger defendants + more priors = substantially higher risk.
+- **SHAP vs LIME:** Both agree age/priors dominate. **SHAP consistent on race**, LIME variable.
+- **DiCE:** Counterfactuals flip predictions **without race/sex changes**.
+- **Governance:** Use **multiple explanation methods** + **regular subgroup error audits**.
 
 ## Reproducing the Analysis
 **1.** Clone this repository  
