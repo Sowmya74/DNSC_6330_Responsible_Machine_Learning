@@ -84,10 +84,15 @@ The Assignment 2 notebook shows that:
 - The model continues to show racial disparities in false-positive and false-negative rates, suggesting the need for ongoing monitoring and fairness audits
 
 ## Reproducing the Analysis
+**1.** Clone this repository  
+**2.** Open notebooks in Jupyter/Colab  
+**3.** Run cells sequentially (no manual intervention needed)
 
-1. Open `Individual_Assignment_1.ipynb` in Google Colab, Jupyter Notebook, or JupyterLab.
-2. Install the required libraries if necessary:
-
+**Install packages:**
+```bash
+pip install -r requirements.txt  # if you add this file
+```
+**Or run directly:**
 ```bash
 pip install pandas numpy matplotlib statsmodels scikit-learn shap lime dice-ml
 ```
