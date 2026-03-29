@@ -53,7 +53,7 @@ The Assignment 1 notebook shows that:
 **File:** [`Individual_Assignment_2.ipynb`](./Individual_Assignment_2.ipynb)
 
 ### Purpose
-The purpose of this assignment is to explain and audit the COMPAS replacement model developed in Assignment 1 using model explanation methods introduced in Lecture 02.
+The purpose of this assignment is to explain and audit the COMPAS replacement model developed in Assignment 1 using model explanation methods.
 
 ### Python Libraries Used
 - `pandas`
@@ -65,11 +65,11 @@ The purpose of this assignment is to explain and audit the COMPAS replacement mo
 - `dice-ml`
 
 ### Description
-This notebook extends the COMPAS model from Homework 1 using explainability methods from Lecture 02. It includes:
+This notebook extends the COMPAS model from Individual Assignment 1 using explainability methods. It includes:
 - Building a logistic regression model and a gradient boosted tree model
 - Comparison of prediction performance across racial groups
 - SHAP beeswarm summary plots
-- SHAP waterfall plots for the highest risk and lowest risk African-American and Caucasian defendants
+- SHAP waterfall plots for the highest risk and lowest risk African American and Caucasian defendants
 - LIME explanations for the same individuals
 - Comparison of SHAP and LIME feature attributions
 - DiCE counterfactual explanations
@@ -87,14 +87,14 @@ This notebook extends the COMPAS model from Homework 1 using explainability meth
 | Asian            |   0.714 |   0.167 | 1.000 |
 | Native American  |   1.000 |   0.000 | 0.000 |
 
-**Key Finding:** Substantial FPR disparity persists: **African-American 0.342 vs Caucasian 0.139**.
+**Key Finding:** Substantial FPR disparity persists: **African American 0.342 vs Caucasian 0.139**.
 
 ### Main Findings
 
-- **SHAP:** Prior arrests and age strongest drivers. Younger defendants + more priors = substantially higher risk.
-- **SHAP vs LIME:** Both agree age/priors dominate. **SHAP consistent on race**, LIME variable.
-- **DiCE:** Counterfactuals flip predictions **without race/sex changes**.
-- **Governance:** Use **multiple explanation methods** + **regular subgroup error audits**.
+- **SHAP:** Prior arrests and age strongest drivers. Younger defendants and more priors are substantially higher risk.
+- **SHAP vs LIME:** Both agree age/priors dominate. SHAP consistent on race, LIME variable.
+- **DiCE:** Counterfactuals flip predictions without race/sex changes.
+- **Governance:** Use multiple explanation methods and regular subgroup error audits.
 
 ## Reproducing the Analysis
 **1.** Clone this repository  
