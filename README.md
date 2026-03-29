@@ -90,9 +90,5 @@ The Assignment 2 notebook shows that:
 
 **Install packages:**
 ```bash
-pip install -r requirements.txt  # if you add this file
-```
-**Or run directly:**
-```bash
 pip install pandas numpy matplotlib statsmodels scikit-learn shap lime dice-ml
 ```
