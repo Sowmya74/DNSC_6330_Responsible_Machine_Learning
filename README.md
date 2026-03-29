@@ -83,7 +83,10 @@ The Assignment 2 notebook shows that:
 - Counterfactual explanations often require changes in prior arrests or age, but should not rely on immutable features
 - The model continues to show racial disparities in false-positive and false-negative rates, suggesting the need for ongoing monitoring and fairness audits
 
-## Required Package Installation
+## Reproducing the Analysis
+
+1. Open `Individual_Assignment_1.ipynb` in Google Colab, Jupyter Notebook, or JupyterLab.
+2. Install the required libraries if necessary:
 
 ```bash
 pip install pandas numpy matplotlib statsmodels scikit-learn shap lime dice-ml
