@@ -6,6 +6,7 @@ This repository contains my coursework for DNSC 6330 Responsible Machine Learnin
 
 - [`Individual_Assignment_1.ipynb`](./Individual_Assignment_1.ipynb)
 - [`Individual_Assignment_2.ipynb`](./Individual_Assignment_2.ipynb)
+- [`Individual_Assignment_3.ipynb`](./Individual_Assignment_3.ipynb)
 - `README.md`
 
 ## Individual Homework 1
@@ -96,6 +97,51 @@ This notebook extends the COMPAS model from Individual Assignment 1 using explai
 - **DiCE:** Counterfactuals flip predictions without race/sex changes.
 - **Governance:** Use multiple explanation methods and regular subgroup error audits.
 
+## Individual Homework 3
+
+**File:** [`Individual_Assignment_3.ipynb`](./Individual_Assignment_3.ipynb)
+
+### Purpose
+The purpose of this assignment is to conduct a formal fairness audit of the COMPAS model using quantitative disparity metrics and statistical significance testing.
+
+### Python Libraries Used
+- `pandas`
+- `numpy`
+- `matplotlib`
+- `scikit-learn`
+- `statsmodels`
+- `scipy`
+- `solas-ai-disparity`
+
+### Description
+This notebook evaluates whether the COMPAS model satisfies common legal and statistical fairness standards. It includes:
+- Computation of Adverse Impact Ratio (AIR), Mean Difference (ME), and Standardized Mean Difference (SMD)
+- Comparison of manual calculations with solas-ai-disparity
+- Intersectional fairness analysis across race and sex subgroups
+- Identification of the subgroup with the lowest AIR relative to Caucasian males
+- Calculation of false-positive-rate (FPR) and false-negative-rate (FNR) disparities by race
+- Two-proportion Z-tests to determine whether FPR and FNR disparities are statistically significant
+- Construction of a publication-quality disparity figure
+- Preparation of a formal compliance memo summarizing the results
+
+### Key Results
+
+| Group Comparison                  | Metric                             | Result  |
+| --------------------------------- | ---------------------------------- | ------- |
+| Hispanic Female vs Caucasian Male | AIR (Adverse Impact Ratio)         | 0.290   |
+| Sex disparity                     | SMD (Standardized Mean Difference) | -0.154  |
+| African-American vs Caucasian     | FPR Gap (False Positive Rate Gap)  | +0.167  |
+| African-American vs Caucasian     | FNR Gap (False Negative Rate Gap)  | -0.249  |
+| African-American FPR disparity    | p-value                            | < 0.001 |
+
+### Main Findings
+- Hispanic females experience the largest intersectional disparity and are classified as high risk at only 29% the rate of Caucasian males.
+- The sex-based SMD of -0.154 indicates a small but meaningful difference in underlying COMPAS scores.
+- African-American defendants have a substantially higher false-positive rate than Caucasian defendants.
+- African-American defendants also have a significantly lower false-negative rate, creating a double burden of error.
+- The false-positive-rate disparity for African-American defendants is statistically significant and suggests that the model does not satisfy error-rate parity standards.
+- Small subgroup sizes, particularly for Native American and Asian defendants, limit the reliability of some significance tests.
+
 ## Reproducing the Analysis
 **1.** Clone this repository  
 **2.** Open notebooks in Jupyter/Colab  
@@ -103,5 +149,5 @@ This notebook extends the COMPAS model from Individual Assignment 1 using explai
 
 **Install packages:**
 ```bash
-pip install pandas numpy matplotlib statsmodels scikit-learn shap lime dice-ml
+pip install pandas numpy matplotlib statsmodels scikit-learn shap lime dice-ml scipy solas-ai-disparity
 ```
