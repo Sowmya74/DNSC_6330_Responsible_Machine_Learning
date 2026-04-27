@@ -7,6 +7,7 @@ This repository contains my coursework for DNSC 6330 Responsible Machine Learnin
 - [`Individual_Assignment_1.ipynb`](./Individual_Assignment_1.ipynb)
 - [`Individual_Assignment_2.ipynb`](./Individual_Assignment_2.ipynb)
 - [`Individual_Assignment_3.ipynb`](./Individual_Assignment_3.ipynb)
+- [`Individual_Assignment_4.ipynb`](./Individual_Assignment_4.ipynb)
 - `README.md`
 
 ## Individual Homework 1
@@ -48,6 +49,8 @@ The Assignment 1 notebook shows that:
 - Younger defendants, especially those under age 25, receive substantially higher predicted risk scores
 - Prior arrests strongly increase the probability of receiving a higher COMPAS score
 - African-American defendants experience higher false-positive rates, while Caucasian defendants experience higher false-negative rates
+
+---
 
 ## Individual Homework 2
 
@@ -97,6 +100,8 @@ This notebook extends the COMPAS model from Individual Assignment 1 using explai
 - **DiCE:** Counterfactuals flip predictions without race/sex changes.
 - **Governance:** Use multiple explanation methods and regular subgroup error audits.
 
+---
+
 ## Individual Homework 3
 
 **File:** [`Individual_Assignment_3.ipynb`](./Individual_Assignment_3.ipynb)
@@ -141,6 +146,91 @@ This notebook evaluates whether the COMPAS model satisfies common legal and stat
 - African-American defendants also have a significantly lower false-negative rate, creating a double burden of error.
 - The false-positive-rate disparity for African-American defendants is statistically significant and suggests that the model does not satisfy error-rate parity standards.
 - Small subgroup sizes, particularly for Native American and Asian defendants, limit the reliability of some significance tests.
+
+---
+
+## Individual Homework 4
+
+**File:** [`Individual_Assignment_4.ipynb`](./Individual_Assignment_4.ipynb)
+
+### Purpose  
+The purpose of this assignment is to evaluate model reliability beyond accuracy by analyzing **distribution drift, generalization, robustness, spurious correlations, and subgroup fairness** using the COMPAS dataset and models developed in previous assignments.
+
+### Python Libraries Used  
+- pandas  
+- numpy  
+- matplotlib  
+- seaborn  
+- scikit-learn  
+- scipy  
+
+### Description  
+This notebook extends prior work by stress-testing the model pipeline across multiple dimensions of reliability and fairness. It includes:
+
+- **Distribution Drift Analysis**
+  - Population Stability Index (PSI) and Kolmogorov–Smirnov (KS) tests for numeric features  
+  - Maximum Mean Discrepancy (MMD) in encoded feature space  
+  - Comparison of predicted probability distributions (train vs test)
+
+- **Generalization Analysis**
+  - Comparison of train vs test accuracy, AUC, and log loss  
+  - Identification of overfitting using performance gaps  
+
+- **Spurious Correlation Analysis**
+  - Counterfactual swaps on race, gender, and crime factor  
+  - Measurement of changes in predicted probabilities  
+
+- **Robustness Testing**
+  - Stress testing of priors_count  
+  - Individual Conditional Expectation (ICE) curves  
+  - Sensitivity analysis using global sensitivity index  
+
+- **Slice-Based Evaluation**
+  - Performance comparison across race, gender, and age groups  
+  - Analysis of disparities in accuracy, false positive rate (FPR), and false negative rate (FNR)
+
+### Key Results
+
+#### Distribution Drift
+- PSI values for all numeric features are very low (< 0.02), indicating **no significant drift**
+- KS tests show no statistical difference between train and test distributions  
+- MMD ≈ 0 confirms **no high-dimensional distribution shift**
+
+#### Generalization
+- Logistic Regression shows **minimal overfitting** with negligible train–test gaps  
+- Gradient-Boosted Tree shows **moderate overfitting** with reduced test performance  
+
+#### Spurious Correlations
+- Counterfactual swaps reveal **strong sensitivity to race**
+- Mean probability shifts:
+  - Logistic Regression: ~0.08  
+  - Gradient-Boosted Tree: ~0.10  
+- Indicates **model dependence on sensitive attributes**
+
+#### Robustness
+- Increasing priors_count leads to a **monotonic increase in predicted risk**
+- Both models are stable, but:
+  - Logistic Regression → smoother response  
+  - Gradient-Boosted Tree → more nonlinear behavior  
+- Sensitivity indices confirm **strong dependence on priors_count**
+
+#### Slice-Based Evaluation
+- Significant disparities across groups:
+  - Higher **FPR for African-American individuals**
+  - Lower performance for younger individuals (<25)  
+- Indicates **uneven error distribution across subpopulations**
+
+### Main Findings
+
+- The dataset shows **no distribution drift**, ensuring a reliable train/test split  
+- Logistic Regression provides **more stable generalization**, while Gradient-Boosted Trees overfit  
+- Both models exhibit **sensitivity to protected attributes**, particularly race  
+- Predictions are highly influenced by priors_count, indicating **strong feature dependence**  
+- Subgroup analysis reveals **fairness concerns**, especially in false positive rates across race  
+
+### Overall Conclusion
+
+While the models demonstrate stable behavior and no distribution drift, they exhibit **moderate overfitting (for GBT), sensitivity to sensitive attributes, and subgroup disparities**. These findings highlight the importance of incorporating **fairness-aware evaluation and robustness checks** before deployment in high-stakes decision systems.
 
 ## Reproducing the Analysis
 **1.** Clone this repository  
