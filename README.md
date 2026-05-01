@@ -9,6 +9,7 @@ This repository contains my coursework for DNSC 6330 Responsible Machine Learnin
 - [`Individual_Assignment_3.ipynb`](./Individual_Assignment_3.ipynb)
 - [`Individual_Assignment_4.ipynb`](./Individual_Assignment_4.ipynb)
 - [`Individual_Assignment_5.ipynb`](./Individual_Assignment_5.ipynb)
+- [`Audit_Report.pdf`](./Audit_Report.pdf)
 - `README.md`
 
 ## Individual Homework 1
@@ -236,7 +237,7 @@ While the models demonstrate stable behavior and no distribution drift, they exh
 ---
 ## Individual Homework 5
 
-**File:** `Individual_Assignment_5.ipynb`
+**File:** [`Individual_Assignment_5.ipynb`](./Individual_Assignment_5.ipynb)
 
 ### Purpose  
 The purpose of this assignment is to conduct a **security and reliability audit** of the COMPAS model using adversarial machine learning techniques. The focus is on evaluating model robustness, fairness under attack, and privacy risks.
@@ -305,7 +306,7 @@ The analysis reveals a critical gap between standard evaluation metrics and real
 
 ## Audit Report
 
-**File:** `Audit_Report.pdf`
+**File:** [`Audit_Report.pdf`](./Audit_Report.pdf)
 
 ### Description  
 This report provides a formal audit of the COMPAS model evaluating **robustness, fairness, and privacy risks** under adversarial conditions. It synthesizes findings from Assignment 5 into a structured governance report.
