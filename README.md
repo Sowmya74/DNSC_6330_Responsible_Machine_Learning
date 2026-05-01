@@ -8,6 +8,7 @@ This repository contains my coursework for DNSC 6330 Responsible Machine Learnin
 - [`Individual_Assignment_2.ipynb`](./Individual_Assignment_2.ipynb)
 - [`Individual_Assignment_3.ipynb`](./Individual_Assignment_3.ipynb)
 - [`Individual_Assignment_4.ipynb`](./Individual_Assignment_4.ipynb)
+- [`Individual_Assignment_5.ipynb`](./Individual_Assignment_5.ipynb)
 - `README.md`
 
 ## Individual Homework 1
@@ -231,6 +232,96 @@ This notebook extends prior work by stress-testing the model pipeline across mul
 ### Overall Conclusion
 
 While the models demonstrate stable behavior and no distribution drift, they exhibit **moderate overfitting (for GBT), sensitivity to sensitive attributes, and subgroup disparities**. These findings highlight the importance of incorporating **fairness-aware evaluation and robustness checks** before deployment in high-stakes decision systems.
+
+---
+## Individual Homework 5
+
+**File:** `Individual_Assignment_5.ipynb`
+
+### Purpose  
+The purpose of this assignment is to conduct a **security and reliability audit** of the COMPAS model using adversarial machine learning techniques. The focus is on evaluating model robustness, fairness under attack, and privacy risks.
+
+### Python Libraries Used  
+- pandas  
+- numpy  
+- matplotlib  
+- scikit-learn  
+
+### Description  
+This notebook evaluates the COMPAS model under adversarial and stress-testing conditions. It includes:
+
+- **PGD Evasion Attack**
+  - Generation of adversarial examples using Logistic Regression as a surrogate  
+  - Transfer attack evaluation on Gradient Boosted Trees  
+  - Analysis of false positive rates (FPR) and Adverse Impact Ratio (AIR)
+
+- **Label-Flip Poisoning Attack**
+  - Targeted poisoning by demographic group  
+  - Analysis of fairness degradation under poisoning  
+  - Identification of stealth zones where fairness changes without accuracy degradation  
+
+- **Drift Detection Evaluation**
+  - Population Stability Index (PSI) analysis  
+  - Assessment of detection failure for label-only attacks  
+
+- **Membership Inference Attack**
+  - Shadow-model-based MI attack  
+  - Comparison of MI AUC across LR and GBT  
+  - Analysis of generalization gap vs. privacy leakage  
+  - L2 regularization sweep and its effect on MI vulnerability  
+
+### Key Results
+
+- **PGD Evasion:**
+  - Both models show increasing FPR under attack  
+  - AIR approaches 1.0 due to collapse in model utility (not true fairness)
+
+- **Poisoning Attack:**
+  - AUC remains stable (~0.734 → ~0.731)  
+  - AIR drops significantly (~0.50 → ~0.33)  
+  - Reveals a **stealth fairness degradation zone**
+
+- **Drift Detection:**
+  - PSI ≈ 0.0 → fails completely  
+  - Feature-based monitoring cannot detect label-only attacks  
+
+- **Membership Inference:**
+  - MI AUC ≈ 0.50 → no meaningful privacy leakage  
+  - Generalization gap does not predict MI risk  
+  - Regularization has negligible effect  
+
+### Main Findings
+
+- Standard performance metrics fail to detect fairness degradation  
+- Fairness is highly vulnerable to label manipulation  
+- Drift detection methods are insufficient for label-based attacks  
+- Privacy risk is minimal in this setting  
+
+### Overall Conclusion
+
+The analysis reveals a critical gap between standard evaluation metrics and real-world model behavior. While accuracy and privacy appear stable, fairness can be significantly degraded without detection. This highlights the need for **fairness-aware monitoring, adversarial testing, and stronger data governance** in high-stakes applications.
+
+---
+
+## Audit Report
+
+**File:** `Audit_Report.pdf`
+
+### Description  
+This report provides a formal audit of the COMPAS model evaluating **robustness, fairness, and privacy risks** under adversarial conditions. It synthesizes findings from Assignment 5 into a structured governance report.
+
+### Key Highlights
+
+- Identification of a **stealth fairness failure mode** under label-flip poisoning  
+- Demonstration that **accuracy-based monitoring fails** to detect fairness degradation  
+- Evidence that **PSI fails** for label-only attacks  
+- Confirmation that **membership inference risk is minimal**  
+
+### Conclusion
+
+The audit concludes that while the models appear reliable under traditional metrics, they are **not suitable for high-stakes deployment without additional safeguards**, particularly for fairness monitoring and data integrity protection.
+
+---
 
 ## Reproducing the Analysis
 **1.** Clone this repository  
